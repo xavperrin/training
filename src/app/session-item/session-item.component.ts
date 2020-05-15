@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FakeSessionItemService } from '../admin/fake-session-item.service';
 ​
 @Component({
   selector: 'app-session-item',
@@ -15,9 +16,10 @@ export class SessionItemComponent implements OnInit {
 ​
   constructor() { }
 ​
-  ngOnInit(): void {
+  ngOnInit() {
   }
-​
+ 
+
   inscrire() {
     console.log("Nouvelle Inscription...");
     //this.session.name = "Formation Web Avancé";

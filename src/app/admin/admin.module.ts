@@ -7,8 +7,20 @@ import { SessionAddFormComponent } from './session-add-form/session-add-form.com
 import { SessionEditFormComponent } from './session-edit-form/session-edit-form.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
-
+import { FakeSessionItemService } from './fake-session-item.service';
+import { Routes, RouterModule } from '@angular/router';
+const adminRoutes: Routes = [
+  {
+    path: '',
+    component: AdminComponent,
+    children: [
+          { path: 'add', component: SessionAddFormComponent },
+          { path: 'edit/:id', component: SessionEditFormComponent },
+          { path: 'list', component: SessionItemListComponent },
+          { path: '',   redirectTo: 'list', pathMatch: 'full' }
+    ],
+  }
+];
 @NgModule({
   declarations: [
     SessionItemComponent,
@@ -17,9 +29,11 @@ import { FormsModule } from '@angular/forms';
     SessionAddFormComponent,
     SessionEditFormComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule], 
-  bootstrap: [AdminComponent]
+  imports: [RouterModule.forChild(adminRoutes),
+    CommonModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AdminComponent],
 })
 export class AdminModule { }
